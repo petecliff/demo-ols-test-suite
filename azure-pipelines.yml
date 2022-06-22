@@ -12,6 +12,7 @@ resources:
   pipelines:
   - pipeline: BuildPipeline
     source: petecliff.demo-olt-test-suite
+    trigger: true
 
 steps:
 - task: Maven@3
