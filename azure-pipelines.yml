@@ -1,0 +1,31 @@
+trigger:
+- main
+
+pool:
+  vmImage: windows-2019
+
+variables:
+- group: Deployment
+- group: 'Test Config'
+
+resources:
+  pipelines:
+  - pipeline: BuildPipeline
+    source: petecliff.demo-olt-test-suite
+
+steps:
+- task: Maven@3
+  env:
+    SHARED_STORAGE_CONNECTION_STRING: $(sharedStoreConnectionString)
+    WORKING_DIR: $(build.sourcesDirectory)
+    ENVIRONMENT: 'test'
+    HOMEPAGE_URL: $(testEnvURL)
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx1024m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'clean test'
