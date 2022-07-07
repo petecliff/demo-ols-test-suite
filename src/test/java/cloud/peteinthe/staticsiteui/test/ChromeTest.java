@@ -73,7 +73,7 @@ class ChromeTest {
 
         String title = driver.getTitle();
 
-        assertThat(title).contains("Dolphin");
+        assertThat(title).contains("Dolphin Privacy Policy");
     }
 
 }
