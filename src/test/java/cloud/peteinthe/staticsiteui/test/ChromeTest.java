@@ -65,7 +65,7 @@ class ChromeTest {
 
     @Test(groups= { "functest" })
     void test() {
-        String homepageUrl = System.getenv("HOMEPAGE_URL");
+        String homepageUrl = System.getenv("OLS_PAGE_URL");
 
         assertThat(homepageUrl).isNotNull();
 
@@ -73,7 +73,7 @@ class ChromeTest {
 
         String title = driver.getTitle();
 
-        assertThat(title).contains("Home");
+        assertThat(title).contains("Facebook");
     }
 
 }
